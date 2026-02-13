@@ -1,6 +1,8 @@
 package com.bookshop.springdocker.Controller;
 
 import com.bookshop.springdocker.model.Convidados;
+import com.bookshop.springdocker.repository.ConvidadosRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,16 @@ import java.util.List;
 @CrossOrigin("*")//Permite que essa API receba comunicação de outros domínios
 public class ConvidadosController {
 
+    //Provem uma instancia do ConvidadosRepository
+    @Autowired
+    private ConvidadosRepository convidadosRepository;
+
+    @GetMapping()
+    public List<Convidados> getConvidados(){
+        return convidadosRepository.findAll();
+    }
+
+    /*
     @GetMapping
     public List<Convidados> getConvidados(){
         List<Convidados> lista = new ArrayList<Convidados>();
@@ -23,5 +35,6 @@ public class ConvidadosController {
                 .id(2).nome("Vegeta").cpf("222.222.222-22").build());
         return lista;
     }
+    */
 
 }
